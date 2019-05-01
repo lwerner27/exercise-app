@@ -32,7 +32,7 @@ export default class CustomNav extends Component {
 					<Collapse isOpen={this.state.isOpen} navbar>
 						<Nav className="ml-auto" navbar>
 							<NavItem>
-								<NavLink href="https://github.com/reactstrap/reactstrap">
+								<NavLink href="https://github.com/lwerner27/exercise-app">
 									GitHub
 								</NavLink>
 							</NavItem>
