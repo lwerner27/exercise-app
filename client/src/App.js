@@ -1,9 +1,10 @@
 import React from "react";
+import CustomNav from "./components/CustomNav";
 
 function App() {
 	return (
 		<div className="App">
-			<h1>Hello World!</h1>
+			<CustomNav />
 		</div>
 	);
 }
