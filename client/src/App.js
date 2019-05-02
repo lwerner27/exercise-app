@@ -6,12 +6,27 @@ export default class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			modal: false
+			modal: false,
+			username: "",
+			password: ""
 		};
 
 		this.toggle = this.toggle.bind(this);
+		this.usernamePassword = this.usernamePassword.bind(this);
+		this.attemptLogin = this.attemptLogin.bind(this);
 	}
 
+	//Updates the state of username and password.
+	usernamePassword(event) {
+		this.setState({ [event.target.name]: event.target.value });
+	}
+
+	//Function for sending request to authenticate user.
+	attemptLogin() {
+		console.log(this.state);
+	}
+
+	//Toggles visibility of login modal.
 	toggle() {
 		this.setState(prevState => ({
 			modal: !prevState.modal
@@ -22,7 +37,12 @@ export default class App extends Component {
 		return (
 			<div>
 				<CustomNav toggleLogin={this.toggle} />
-				<LoginModal modal={modal} toggle={this.toggle} />
+				<LoginModal
+					modal={modal}
+					toggle={this.toggle}
+					usernamePassword={this.usernamePassword}
+					attemptLogin={this.attemptLogin}
+				/>
 			</div>
 		);
 	}
