@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import CustomNav from "./components/CustomNav";
 import LoginModal from "./components/LoginModal";
+import Home from "./pages/Home";
 
 export default class App extends Component {
 	constructor(props) {
@@ -37,6 +39,9 @@ export default class App extends Component {
 		return (
 			<div>
 				<CustomNav toggleLogin={this.toggle} />
+				<Router>
+					<Route path="/" component={Home} />
+				</Router>
 				<LoginModal
 					modal={modal}
 					toggle={this.toggle}
