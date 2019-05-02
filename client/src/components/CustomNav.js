@@ -24,6 +24,7 @@ export default class CustomNav extends Component {
 		});
 	}
 	render() {
+		let { toggleLogin } = this.props;
 		return (
 			<div>
 				<Navbar color="dark" dark expand="md">
@@ -38,6 +39,9 @@ export default class CustomNav extends Component {
 								>
 									GitHub
 								</NavLink>
+							</NavItem>
+							<NavItem>
+								<NavLink onClick={toggleLogin}>Login</NavLink>
 							</NavItem>
 						</Nav>
 					</Collapse>
