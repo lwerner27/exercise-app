@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 // const mongoose = require("mongoose");
-const routes = require("./routes");
+// const routes = require("./routes");
 const history = require("connect-history-api-fallback");
 
 const PORT = process.env.PORT || 8080;
@@ -17,7 +17,7 @@ app.use(
 	})
 );
 app.use(bodyParser.json());
-app.use(routes);
+// app.use(routes);
 
 // Connect to the Mongo DB
 // mongoose.connect(
