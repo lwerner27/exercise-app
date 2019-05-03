@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import CustomNav from "./components/CustomNav";
 import LoginModal from "./components/LoginModal";
 import Home from "./pages/Home";
+import AddWorkout from "./pages/AddWorkout";
 
 export default class App extends Component {
 	constructor(props) {
@@ -34,20 +35,22 @@ export default class App extends Component {
 			modal: !prevState.modal
 		}));
 	}
+
 	render() {
 		let { modal } = this.state;
 		return (
 			<div>
-				<CustomNav toggleLogin={this.toggle} />
 				<Router>
-					<Route path="/" component={Home} />
+					<CustomNav toggleLogin={this.toggle} />
+					<LoginModal
+						modal={modal}
+						toggle={this.toggle}
+						usernamePassword={this.usernamePassword}
+						attemptLogin={this.attemptLogin}
+					/>
+					<Route exact path="/" component={Home} />
+					<Route path="/addworkout" component={AddWorkout} />
 				</Router>
-				<LoginModal
-					modal={modal}
-					toggle={this.toggle}
-					usernamePassword={this.usernamePassword}
-					attemptLogin={this.attemptLogin}
-				/>
 			</div>
 		);
 	}
