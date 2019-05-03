@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import {
 	Navbar,
 	NavbarBrand,
@@ -28,7 +29,9 @@ export default class CustomNav extends Component {
 		return (
 			<div>
 				<Navbar color="dark" dark expand="md">
-					<NavbarBrand href="/">My Fit</NavbarBrand>
+					<NavbarBrand tag={Link} to="/">
+						My Fit
+					</NavbarBrand>
 					<NavbarToggler onClick={this.toggle} />
 					<Collapse isOpen={this.state.isOpen} navbar>
 						<Nav className="ml-auto" navbar>
@@ -42,6 +45,11 @@ export default class CustomNav extends Component {
 							</NavItem>
 							<NavItem>
 								<NavLink onClick={toggleLogin}>Login</NavLink>
+							</NavItem>
+							<NavItem>
+								<NavLink tag={Link} to="/addworkout">
+									Add Workout
+								</NavLink>
 							</NavItem>
 						</Nav>
 					</Collapse>
