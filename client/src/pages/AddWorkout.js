@@ -113,6 +113,7 @@ export default class AddWorkout extends Component {
 									</FormGroup>
 								</Col>
 							</Row>
+							{/* From here up will get moved to its own component. */}
 							<Row form>
 								<Col>
 									<FormGroup>
