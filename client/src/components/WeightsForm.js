@@ -67,7 +67,12 @@ export default function WeightsForm({ handleChange, muscleGroup }) {
 				<Col>
 					<FormGroup>
 						<Label for="notes">Notes</Label>
-						<Input type="textarea" name="notes" id="notes" />
+						<Input
+							type="textarea"
+							name="notes"
+							id="notes"
+							onChange={handleChange}
+						/>
 					</FormGroup>
 				</Col>
 			</Row>
