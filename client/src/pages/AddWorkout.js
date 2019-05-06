@@ -9,8 +9,7 @@ export default class AddWorkout extends Component {
 			date: "",
 			exercises: [],
 			exerciseType: "Select Exercise Type",
-			muscleGroup: "Select a Muscle Group",
-			weight: ""
+			muscleGroup: "Select a Muscle Group"
 		};
 		this.compareDates = this.compareDates.bind(this);
 		this.handleChange = this.handleChange.bind(this);
