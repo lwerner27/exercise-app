@@ -1,14 +1,6 @@
 import React, { Component } from "react";
-import {
-	Container,
-	Row,
-	Col,
-	Form,
-	FormGroup,
-	Input,
-	Label,
-	Button
-} from "reactstrap";
+import WeightsForm from "../components/WeightsForm";
+import { Container, Row, Col, Form, FormGroup, Input, Label } from "reactstrap";
 
 export default class AddWorkout extends Component {
 	constructor(props) {
@@ -17,10 +9,12 @@ export default class AddWorkout extends Component {
 			date: "",
 			exercises: [],
 			exerciseType: "Select Exercise Type",
-			muscleGroup: "Select a Muscle Group"
+			muscleGroup: "Select a Muscle Group",
+			weight: ""
 		};
 		this.compareDates = this.compareDates.bind(this);
 		this.handleChange = this.handleChange.bind(this);
+		this.renderForm = this.renderForm.bind(this);
 	}
 
 	compareDates(date, data) {
@@ -50,6 +44,20 @@ export default class AddWorkout extends Component {
 		this.setState({ [event.target.name]: event.target.value });
 	}
 
+	renderForm() {
+		let { exerciseType, muscleGroup } = this.state;
+		if (exerciseType === "Weights") {
+			return (
+				<WeightsForm
+					handleChange={this.handleChange}
+					muscleGroup={muscleGroup}
+				/>
+			);
+		} else {
+			return null;
+		}
+	}
+
 	render() {
 		console.log(this.state);
 		return (
@@ -77,55 +85,8 @@ export default class AddWorkout extends Component {
 									</FormGroup>
 								</Col>
 							</Row>
-							{/* From here down will get moved to its own component. */}
-							<Row form>
-								<Col sm={12}>
-									<FormGroup>
-										<Label for="muscleGroup">Muscle Group</Label>
-										<Input
-											value={this.state.muscleGroup}
-											type="select"
-											name="muscleGroup"
-											id="muscleGroup"
-											onChange={this.handleChange}
-										>
-											<option disabled>Select a Muscle Group</option>
-											<option>Biceps</option>
-											<option>Triceps</option>
-											<option>Sholders</option>
-											<option>Back</option>
-											<option>Legs</option>
-										</Input>
-									</FormGroup>
-								</Col>
-							</Row>
-							<Row form>
-								<Col sm={12} md={6}>
-									<FormGroup>
-										<Label for="sets">Sets</Label>
-										<Input type="text" name="sets" id="sets" placeholder="4" />
-									</FormGroup>
-								</Col>
-								<Col sm={12} md={6}>
-									<FormGroup>
-										<Label for="reps">Reps</Label>
-										<Input type="text" name="reps" id="reps" placeholder="10" />
-									</FormGroup>
-								</Col>
-							</Row>
-							{/* From here up will get moved to its own component. */}
-							<Row form>
-								<Col>
-									<FormGroup>
-										<Label for="notes">Notes</Label>
-										<Input type="textarea" name="notes" id="notes" />
-									</FormGroup>
-								</Col>
-							</Row>
-							<Button color="primary" block>
-								Add Exercise
-							</Button>
 						</Form>
+						{this.renderForm()}
 					</Col>
 					<Col sm={12} md={6}>
 						<h1>This column will display already added exercise data.</h1>
