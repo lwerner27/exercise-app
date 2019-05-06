@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import WeightsForm from "../components/WeightsForm";
+import CardioForm from "../components/CardioForm";
 import { Container, Row, Col, Form, FormGroup, Input, Label } from "reactstrap";
 
 export default class AddWorkout extends Component {
@@ -9,7 +10,8 @@ export default class AddWorkout extends Component {
 			date: "",
 			exercises: [],
 			exerciseType: "Select Exercise Type",
-			muscleGroup: "Select a Muscle Group"
+			muscleGroup: "Select a Muscle Group",
+			cardioType: "Select a Cardio Type"
 		};
 		this.compareDates = this.compareDates.bind(this);
 		this.handleChange = this.handleChange.bind(this);
@@ -44,13 +46,17 @@ export default class AddWorkout extends Component {
 	}
 
 	renderForm() {
-		let { exerciseType, muscleGroup } = this.state;
+		let { exerciseType, muscleGroup, cardioType } = this.state;
 		if (exerciseType === "Weights") {
 			return (
 				<WeightsForm
 					handleChange={this.handleChange}
 					muscleGroup={muscleGroup}
 				/>
+			);
+		} else if (exerciseType === "Cardio") {
+			return (
+				<CardioForm handleChange={this.handleChange} cardioType={cardioType} />
 			);
 		} else {
 			return null;
