@@ -18,6 +18,7 @@ export default class AddWorkout extends Component {
 		this.renderForm = this.renderForm.bind(this);
 	}
 
+	// Compares the data on local storage to the current data and acts accordingly.
 	compareDates(date, data) {
 		if (date === data.date) {
 			console.log("The dates match.");
@@ -41,6 +42,7 @@ export default class AddWorkout extends Component {
 		}
 	}
 
+	// Handles the changes for all inputs on this page and its subcomponents.
 	handleChange(event) {
 		if (parseInt(event.target.value)) {
 			this.setState({ [event.target.name]: parseInt(event.target.value) });
@@ -49,6 +51,7 @@ export default class AddWorkout extends Component {
 		}
 	}
 
+	// Renders either the WeightsForm or CardioForm depending on what is selected.
 	renderForm() {
 		let { exerciseType, muscleGroup, cardioType } = this.state;
 		if (exerciseType === "Weights") {
@@ -105,6 +108,7 @@ export default class AddWorkout extends Component {
 	}
 }
 
+// A function for getting the current date and formatting it correctly.
 function getDate() {
 	let date = new Date();
 	let today = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
