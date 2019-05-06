@@ -42,7 +42,11 @@ export default class AddWorkout extends Component {
 	}
 
 	handleChange(event) {
-		this.setState({ [event.target.name]: event.target.value });
+		if (parseInt(event.target.value)) {
+			this.setState({ [event.target.name]: parseInt(event.target.value) });
+		} else {
+			this.setState({ [event.target.name]: event.target.value });
+		}
 	}
 
 	renderForm() {
@@ -64,7 +68,6 @@ export default class AddWorkout extends Component {
 	}
 
 	render() {
-		console.log(this.state);
 		return (
 			<Container>
 				<br />
