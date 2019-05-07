@@ -64,7 +64,7 @@ export default class AddWorkout extends Component {
 		let { exercises } = this.state;
 		exercises.unshift(exerciseData);
 		this.setState(exercises, () => {
-			console.log(this.state);
+			localStorage.setItem("storedData", JSON.stringify(this.state));
 		});
 	}
 
