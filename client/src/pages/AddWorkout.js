@@ -14,6 +14,7 @@ export default class AddWorkout extends Component {
 		this.compareDates = this.compareDates.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.renderForm = this.renderForm.bind(this);
+		this.addExercise = this.addExercise.bind(this);
 	}
 
 	// Compares the data on local storage to the current data and acts accordingly.
@@ -51,7 +52,7 @@ export default class AddWorkout extends Component {
 	renderForm() {
 		let { exerciseType, cardioType } = this.state;
 		if (exerciseType === "Weights") {
-			return <WeightsForm />;
+			return <WeightsForm addExercise={this.addExercise} />;
 		} else if (exerciseType === "Cardio") {
 			return (
 				<CardioForm handleChange={this.handleChange} cardioType={cardioType} />
@@ -59,6 +60,14 @@ export default class AddWorkout extends Component {
 		} else {
 			return null;
 		}
+	}
+
+	addExercise(exerciseData) {
+		let { exercises } = this.state;
+		exercises.unshift(exerciseData);
+		this.setState(exercises, () => {
+			console.log(this.state);
+		});
 	}
 
 	render() {
