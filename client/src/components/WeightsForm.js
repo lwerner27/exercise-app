@@ -44,12 +44,13 @@ class WeightForm extends Component {
 
 	handleClick() {
 		let exerciseData = {
+			exerciseType: "Weights",
 			muscleGroup: this.state.muscleGroup,
 			...this.state.exerciseData,
 			notes: this.state.notes
 		};
 
-		console.log(exerciseData);
+		this.props.addExercise(exerciseData);
 	}
 
 	render() {
