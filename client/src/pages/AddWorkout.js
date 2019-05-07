@@ -9,9 +9,7 @@ export default class AddWorkout extends Component {
 		this.state = {
 			date: "",
 			exercises: [],
-			exerciseType: "Select Exercise Type",
-			muscleGroup: "Select a Muscle Group",
-			cardioType: "Select a Cardio Type"
+			exerciseType: "Select Exercise Type"
 		};
 		this.compareDates = this.compareDates.bind(this);
 		this.handleChange = this.handleChange.bind(this);
@@ -44,23 +42,16 @@ export default class AddWorkout extends Component {
 
 	// Handles the changes for all inputs on this page and its subcomponents.
 	handleChange(event) {
-		if (parseInt(event.target.value)) {
-			this.setState({ [event.target.name]: parseInt(event.target.value) });
-		} else {
-			this.setState({ [event.target.name]: event.target.value });
-		}
+		this.setState({
+			[event.target.name]: event.target.value
+		});
 	}
 
 	// Renders either the WeightsForm or CardioForm depending on what is selected.
 	renderForm() {
-		let { exerciseType, muscleGroup, cardioType } = this.state;
+		let { exerciseType, cardioType } = this.state;
 		if (exerciseType === "Weights") {
-			return (
-				<WeightsForm
-					handleChange={this.handleChange}
-					muscleGroup={muscleGroup}
-				/>
-			);
+			return <WeightsForm />;
 		} else if (exerciseType === "Cardio") {
 			return (
 				<CardioForm handleChange={this.handleChange} cardioType={cardioType} />
