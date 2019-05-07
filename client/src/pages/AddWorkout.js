@@ -50,13 +50,11 @@ export default class AddWorkout extends Component {
 
 	// Renders either the WeightsForm or CardioForm depending on what is selected.
 	renderForm() {
-		let { exerciseType, cardioType } = this.state;
+		let { exerciseType } = this.state;
 		if (exerciseType === "Weights") {
 			return <WeightsForm addExercise={this.addExercise} />;
 		} else if (exerciseType === "Cardio") {
-			return (
-				<CardioForm handleChange={this.handleChange} cardioType={cardioType} />
-			);
+			return <CardioForm addExercise={this.addExercise} />;
 		} else {
 			return null;
 		}
