@@ -12,7 +12,7 @@ class WeightForm extends Component {
 				weight: null
 			},
 			notes: "",
-			buttonStatus: true
+			disableButton: true
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleIntChange = this.handleIntChange.bind(this);
@@ -31,14 +31,10 @@ class WeightForm extends Component {
 
 		let { sets, reps, weight } = exerciseData;
 
-		if (
-			typeof sets === "number" &&
-			typeof reps === "number" &&
-			typeof weight === "number"
-		) {
-			this.setState({ exerciseData: exerciseData, buttonStatus: false });
+		if (sets && reps && weight) {
+			this.setState({ exerciseData: exerciseData, disableButton: false });
 		} else {
-			this.setState({ exerciseData: exerciseData });
+			this.setState({ exerciseData: exerciseData, disableButton: true });
 		}
 	}
 
@@ -134,7 +130,7 @@ class WeightForm extends Component {
 					</div>
 				)}
 				<Button
-					disabled={this.state.buttonStatus}
+					disabled={this.state.disableButton}
 					color="primary"
 					block
 					onClick={this.handleClick}
