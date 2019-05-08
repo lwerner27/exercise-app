@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import WeightsForm from "../components/WeightsForm";
 import CardioForm from "../components/CardioForm";
+import DisplayExercises from "../components/DisplayExercise";
 import { Container, Row, Col, Form, FormGroup, Input, Label } from "reactstrap";
 
 export default class AddWorkout extends Component {
@@ -96,10 +97,9 @@ export default class AddWorkout extends Component {
 							</Row>
 						</Form>
 						{this.renderForm()}
+						<br />
 					</Col>
-					<Col sm={12} md={6}>
-						<h1>This column will display already added exercise data.</h1>
-					</Col>
+					<DisplayExercises exercises={this.state.exercises} />
 				</Row>
 			</Container>
 		);
