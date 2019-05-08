@@ -18,18 +18,6 @@ export default class AddWorkout extends Component {
 		this.addExercise = this.addExercise.bind(this);
 	}
 
-	// Compares the data on local storage to the current data and acts accordingly.
-	compareDates(date, data) {
-		if (date === data.date) {
-			console.log("The dates match.");
-			this.setState(data);
-		} else {
-			console.log("The dates do not match.");
-			localStorage.removeItem("storedData");
-			this.setState({ date: date });
-		}
-	}
-
 	componentDidMount() {
 		let ls = localStorage;
 		let todaysDate = getDate();
@@ -39,6 +27,18 @@ export default class AddWorkout extends Component {
 			this.compareDates(todaysDate, storedData);
 		} else {
 			this.setState({ date: todaysDate });
+		}
+	}
+
+	// Compares the data on local storage to the current data and acts accordingly.
+	compareDates(date, data) {
+		if (date === data.date) {
+			console.log("The dates match.");
+			this.setState(data);
+		} else {
+			console.log("The dates do not match.");
+			localStorage.removeItem("storedData");
+			this.setState({ date: date });
 		}
 	}
 
@@ -61,6 +61,7 @@ export default class AddWorkout extends Component {
 		}
 	}
 
+	// Adds the exercise to the list of exercises after state updates it gets saved to local storage.
 	addExercise(exerciseData) {
 		let { exercises } = this.state;
 		exercises.unshift(exerciseData);
