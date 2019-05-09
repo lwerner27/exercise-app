@@ -6,4 +6,4 @@
 // router.use("/picks", pickRoutes);
 // router.use("/users", usersRoutes);
 
-module.exports = router;
+// module.exports = router;
