@@ -13,7 +13,9 @@ import {
 export default function LoginModal({
 	modal,
 	toggle,
-	usernamePassword,
+	email,
+	password,
+	emailPassword,
 	attemptLogin
 }) {
 	return (
@@ -24,12 +26,12 @@ export default function LoginModal({
 					<ModalBody>
 						<Form>
 							<FormGroup>
-								<Label for="username">Username</Label>
+								<Label for="username">Email</Label>
 								<Input
 									type="text"
-									name="username"
-									id="username"
-									onChange={usernamePassword}
+									name="email"
+									id="email"
+									onChange={emailPassword}
 								/>
 							</FormGroup>
 							<FormGroup>
@@ -38,7 +40,7 @@ export default function LoginModal({
 									type="password"
 									name="password"
 									id="password"
-									onChange={usernamePassword}
+									onChange={emailPassword}
 								/>
 							</FormGroup>
 							<Button color="primary" block onClick={attemptLogin}>
