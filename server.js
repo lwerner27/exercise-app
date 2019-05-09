@@ -1,15 +1,15 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 // const mongoose = require("mongoose");
-// const routes = require("./routes");
-const history = require("connect-history-api-fallback");
+const routes = require("./routes");
+const admin = require("firebase-admin");
+
+admin.initializeApp({
+	credential: admin.credential.applicationDefault()
+});
 
 const PORT = process.env.PORT || 8080;
 const app = express();
-
-app.use(history());
-
-// app.use(express.static("dist"));
 
 app.use(
 	bodyParser.urlencoded({
@@ -17,7 +17,7 @@ app.use(
 	})
 );
 app.use(bodyParser.json());
-// app.use(routes);
+app.use(routes);
 
 // Connect to the Mongo DB
 // mongoose.connect(
