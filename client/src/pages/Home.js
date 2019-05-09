@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import {
 	Container,
 	Row,
@@ -27,10 +28,18 @@ export default class Home extends Component {
 	}
 
 	submitRegistration() {
-		let { username, password, confirmPassword } = this.state;
+		let { email, username, password, confirmPassword } = this.state;
+
+		let userInfo = {
+			email,
+			username,
+			password
+		};
+
 		if (password === confirmPassword) {
-			console.log(username, password, confirmPassword);
-			alert("Your account has been created!");
+			axios.post("/auth/register", userInfo).then(res => {
+				console.log(res);
+			});
 		} else {
 			alert("Your passwords do not match please try again.");
 		}
@@ -45,6 +54,15 @@ export default class Home extends Component {
 						<br />
 						<br />
 						<Form>
+							<FormGroup>
+								<Label for="email">Email</Label>
+								<Input
+									type="text"
+									name="email"
+									id="email"
+									onChange={this.handleChange}
+								/>
+							</FormGroup>
 							<FormGroup>
 								<Label for="username">Username</Label>
 								<Input
