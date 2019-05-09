@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import axios from "axios";
 import CustomNav from "./components/CustomNav";
 import LoginModal from "./components/LoginModal";
 import Home from "./pages/Home";
@@ -10,23 +11,27 @@ export default class App extends Component {
 		super(props);
 		this.state = {
 			modal: false,
-			username: "",
+			email: "",
 			password: ""
 		};
 
 		this.toggle = this.toggle.bind(this);
-		this.usernamePassword = this.usernamePassword.bind(this);
+		this.emailPassword = this.emailPassword.bind(this);
 		this.attemptLogin = this.attemptLogin.bind(this);
 	}
 
 	//Updates the state of username and password.
-	usernamePassword(event) {
+	emailPassword(event) {
 		this.setState({ [event.target.name]: event.target.value });
 	}
 
 	//Function for sending request to authenticate user.
 	attemptLogin() {
-		console.log(this.state);
+		let { email, password } = this.state;
+
+		axios.post("/auth/login", { email, password }).then(user => {
+			console.log(user);
+		});
 	}
 
 	//Toggles visibility of login modal.
@@ -45,6 +50,8 @@ export default class App extends Component {
 					<LoginModal
 						modal={modal}
 						toggle={this.toggle}
+						email={this.state.email}
+						password={this.state.password}
 						usernamePassword={this.usernamePassword}
 						attemptLogin={this.attemptLogin}
 					/>
