@@ -15,7 +15,7 @@ export default class Home extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			username: "",
+			fullName: "",
 			password: "",
 			confirmPassword: ""
 		};
@@ -28,18 +28,23 @@ export default class Home extends Component {
 	}
 
 	submitRegistration() {
-		let { email, username, password, confirmPassword } = this.state;
+		let { email, fullName, password, confirmPassword } = this.state;
 
 		let userInfo = {
 			email,
-			username,
+			fullName,
 			password
 		};
 
 		if (password === confirmPassword) {
-			axios.post("/auth/register", userInfo).then(res => {
-				console.log(res);
-			});
+			axios
+				.post("/auth/register", userInfo)
+				.then(res => {
+					console.log(res);
+				})
+				.catch(err => {
+					console.log(err);
+				});
 		} else {
 			alert("Your passwords do not match please try again.");
 		}
@@ -64,11 +69,11 @@ export default class Home extends Component {
 								/>
 							</FormGroup>
 							<FormGroup>
-								<Label for="username">Username</Label>
+								<Label for="fullName">Full Name</Label>
 								<Input
 									type="text"
-									name="username"
-									id="usernamer"
+									name="fullName"
+									id="fullName"
 									onChange={this.handleChange}
 								/>
 							</FormGroup>
