@@ -31,4 +31,44 @@ router.post("/register", (req, res) => {
 		});
 });
 
+router.post("/login", (req, res) => {
+	let { email, password } = req.body;
+	User.findOne({ email: email })
+		.then(user => {
+			let passwordCheck = bcrypt.compareSync(password, user.password);
+			if (passwordCheck) {
+				// Save the user id to session storage.
+				req.session.userId = {
+					id: user._id
+				};
+				res.status(200).json({ msg: "You have successfully logged in." });
+			} else {
+				res.status(401).json({ msg: "Incorrect Password." });
+			}
+		})
+		.catch(error => {
+			console.log(error);
+			res.status(400).json({
+				msg: "There was a problem logging in please try again later."
+			});
+		});
+});
+
+router.all("/logout", (req, res) => {
+	req.session.destroy(err => {
+		if (err) {
+			return res
+				.status(400)
+				.json({ msg: "There was a problem logging out, please try again." });
+		}
+	});
+
+	return res
+		.status(200)
+		.clearCookie("sid")
+		.json({ msg: "You have successfully logged out." });
+});
+
+// router.get("/status", (req, res) => {});
+
 module.exports = router;
