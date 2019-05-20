@@ -16,6 +16,10 @@ app.use(
 app.use(bodyParser.json());
 app.use(
 	session({
+		name: "sid",
+		cookie: {
+			maxAge: 1000 * 60 * 60 * 2
+		},
 		secret: process.env.SESSION_SECRET,
 		saveUninitialized: false,
 		resave: false
