@@ -26,7 +26,7 @@ export default function LoginModal({
 					<ModalBody>
 						<Form>
 							<FormGroup>
-								<Label for="username">Email</Label>
+								<Label for="email">Email</Label>
 								<Input
 									type="text"
 									name="email"
