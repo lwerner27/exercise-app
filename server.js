@@ -17,8 +17,8 @@ app.use(bodyParser.json());
 app.use(
 	session({
 		secret: process.env.SESSION_SECRET,
-		resave: true,
-		saveUninitialized: false
+		saveUninitialized: false,
+		resave: false
 	})
 );
 app.use(routes);
