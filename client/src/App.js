@@ -20,12 +20,12 @@ export default class App extends Component {
 		this.attemptLogin = this.attemptLogin.bind(this);
 	}
 
-	//Updates the state of username and password.
+	// Updates the state of username and password.
 	emailPassword(event) {
 		this.setState({ [event.target.name]: event.target.value });
 	}
 
-	//Function for sending request to authenticate user.
+	// Function for sending request to authenticate user.
 	attemptLogin() {
 		let { email, password } = this.state;
 
@@ -36,7 +36,7 @@ export default class App extends Component {
 		});
 	}
 
-	//Toggles visibility of login modal.
+	// Toggles visibility of login modal.
 	toggle() {
 		this.setState(prevState => ({
 			modal: !prevState.modal
