@@ -12,7 +12,8 @@ export default class App extends Component {
 		this.state = {
 			modal: false,
 			email: "",
-			password: ""
+			password: "",
+			loggedIn: false
 		};
 
 		this.toggle = this.toggle.bind(this);
@@ -29,10 +30,14 @@ export default class App extends Component {
 	attemptLogin() {
 		let { email, password } = this.state;
 
-		console.log(email, password);
+		axios.post("/auth/login", { email, password }).then(res => {
+			console.log(res);
+		});
+	}
 
-		axios.post("/auth/login", { email, password }).then(user => {
-			console.log(user);
+	attemptLogout() {
+		axios.get("/auth/logout").then(res => {
+			console.log(res);
 		});
 	}
 
@@ -48,7 +53,10 @@ export default class App extends Component {
 		return (
 			<div>
 				<Router>
-					<CustomNav toggleLogin={this.toggle} />
+					<CustomNav
+						toggleLogin={this.toggle}
+						attemptLogout={this.attemptLogout}
+					/>
 					<LoginModal
 						modal={modal}
 						toggle={this.toggle}
