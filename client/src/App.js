@@ -29,6 +29,8 @@ export default class App extends Component {
 	attemptLogin() {
 		let { email, password } = this.state;
 
+		console.log(email, password);
+
 		axios.post("/auth/login", { email, password }).then(user => {
 			console.log(user);
 		});
@@ -52,7 +54,7 @@ export default class App extends Component {
 						toggle={this.toggle}
 						email={this.state.email}
 						password={this.state.password}
-						usernamePassword={this.usernamePassword}
+						emailPassword={this.emailPassword}
 						attemptLogin={this.attemptLogin}
 					/>
 					<Route exact path="/" component={Home} />
