@@ -25,7 +25,7 @@ export default class CustomNav extends Component {
 		});
 	}
 	render() {
-		let { toggleLogin } = this.props;
+		let { toggleLogin, attemptLogout } = this.props;
 		return (
 			<div>
 				<Navbar color="dark" dark expand="md">
@@ -45,6 +45,9 @@ export default class CustomNav extends Component {
 							</NavItem>
 							<NavItem>
 								<NavLink onClick={toggleLogin}>Login</NavLink>
+							</NavItem>
+							<NavItem>
+								<NavLink onClick={attemptLogout}>Logout</NavLink>
 							</NavItem>
 							<NavItem>
 								<NavLink tag={Link} to="/addworkout">
