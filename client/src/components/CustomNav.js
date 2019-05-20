@@ -44,10 +44,14 @@ export default class CustomNav extends Component {
 								</NavLink>
 							</NavItem>
 							<NavItem>
-								<NavLink onClick={toggleLogin}>Login</NavLink>
+								<NavLink tag={Link} to="#" onClick={toggleLogin}>
+									Login
+								</NavLink>
 							</NavItem>
 							<NavItem>
-								<NavLink onClick={attemptLogout}>Logout</NavLink>
+								<NavLink tag={Link} to="#" onClick={attemptLogout}>
+									Logout
+								</NavLink>
 							</NavItem>
 							<NavItem>
 								<NavLink tag={Link} to="/addworkout">
