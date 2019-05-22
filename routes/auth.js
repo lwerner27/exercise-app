@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
+const { checkLoginStatus } = require("../shared/shared");
 const User = require("../models/User");
 
 router.post("/register", (req, res) => {
@@ -69,6 +70,8 @@ router.all("/logout", (req, res) => {
 		.json({ msg: "You have successfully logged out." });
 });
 
-// router.get("/status", (req, res) => {});
+router.all("/status", checkLoginStatus, (req, res) => {
+	return res.status(200).json({ msg: "You are currently logged in." });
+});
 
 module.exports = router;
