@@ -48,6 +48,23 @@ export default class App extends Component {
 		}));
 	}
 
+	componentDidMount() {
+		axios
+			.get("/auth/status")
+			.then(res => {
+				if (res.status === 200) {
+					this.setState({ loggedIn: true }, () => {
+						console.log("You are logged in.");
+					});
+				}
+			})
+			.catch(err => {
+				this.setState({ loggedIn: false }, () => {
+					console.log("You are not logged in.");
+				});
+			});
+	}
+
 	render() {
 		let { modal } = this.state;
 		return (
