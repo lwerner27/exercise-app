@@ -24,8 +24,31 @@ export default class CustomNav extends Component {
 			isOpen: !this.state.isOpen
 		});
 	}
+
+	checkLogin(status) {
+		if (status) {
+			return (
+				<NavItem>
+					<NavLink tag={Link} to="#" onClick={this.props.attemptLogout}>
+						Logout
+					</NavLink>
+				</NavItem>
+			);
+		} else {
+			return (
+				<NavItem>
+					<NavLink tag={Link} to="#" onClick={this.props.toggleLogin}>
+						Login
+					</NavLink>
+				</NavItem>
+			);
+		}
+	}
+
+	componentDidUpdate() {}
+
 	render() {
-		let { toggleLogin, attemptLogout } = this.props;
+		let { loginStatus } = this.props;
 		return (
 			<div>
 				<Navbar color="dark" dark expand="md">
@@ -43,16 +66,7 @@ export default class CustomNav extends Component {
 									GitHub
 								</NavLink>
 							</NavItem>
-							<NavItem>
-								<NavLink tag={Link} to="#" onClick={toggleLogin}>
-									Login
-								</NavLink>
-							</NavItem>
-							<NavItem>
-								<NavLink tag={Link} to="#" onClick={attemptLogout}>
-									Logout
-								</NavLink>
-							</NavItem>
+							{this.checkLogin(loginStatus)}
 							<NavItem>
 								<NavLink tag={Link} to="/addworkout">
 									Add Workout
