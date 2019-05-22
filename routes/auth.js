@@ -55,7 +55,7 @@ router.post("/login", (req, res) => {
 		});
 });
 
-router.all("/logout", (req, res) => {
+router.all("/logout", checkLoginStatus, (req, res) => {
 	req.session.destroy(err => {
 		if (err) {
 			return res
