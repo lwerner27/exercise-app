@@ -19,6 +19,7 @@ export default class App extends Component {
 		this.toggle = this.toggle.bind(this);
 		this.emailPassword = this.emailPassword.bind(this);
 		this.attemptLogin = this.attemptLogin.bind(this);
+		this.attemptLogout = this.attemptLogout.bind(this);
 	}
 
 	// Updates the state of username and password.
@@ -31,13 +32,17 @@ export default class App extends Component {
 		let { email, password } = this.state;
 
 		axios.post("/auth/login", { email, password }).then(res => {
-			console.log(res);
+			if (res.status === 200) {
+				this.setState({ loggedIn: true });
+			}
 		});
 	}
 
 	attemptLogout() {
 		axios.get("/auth/logout").then(res => {
-			console.log(res);
+			if (res.status === 200) {
+				this.setState({ loggedIn: false });
+			}
 		});
 	}
 
@@ -73,6 +78,7 @@ export default class App extends Component {
 					<CustomNav
 						toggleLogin={this.toggle}
 						attemptLogout={this.attemptLogout}
+						loginStatus={this.state.loggedIn}
 					/>
 					<LoginModal
 						modal={modal}
