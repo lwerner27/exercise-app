@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+import axios from "axios";
 import WeightsForm from "../components/WeightsForm";
 import CardioForm from "../components/CardioForm";
 import DisplayExercises from "../components/DisplayExercise";
@@ -29,6 +30,10 @@ export default class AddWorkout extends Component {
 		} else {
 			this.setState({ date: todaysDate });
 		}
+
+		axios.get(`/api/day/current/${todaysDate}`).then(res => {
+			console.log(res);
+		});
 	}
 
 	// Compares the data on local storage to the current data and acts accordingly.
@@ -119,6 +124,6 @@ export default class AddWorkout extends Component {
 // A function for getting the current date and formatting it correctly.
 function getDate() {
 	let date = new Date();
-	let today = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+	let today = `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
 	return today;
 }
