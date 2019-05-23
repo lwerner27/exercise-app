@@ -41,9 +41,7 @@ router.post("/login", (req, res) => {
 			let passwordCheck = bcrypt.compareSync(password, user.password);
 			if (passwordCheck) {
 				// Save the user id to session storage.
-				req.session.userId = {
-					id: user._id
-				};
+				req.session.userId = user._id;
 				res.status(200).json({ msg: "You have successfully logged in." });
 			} else {
 				res.status(401).json({ msg: "Incorrect Password." });
