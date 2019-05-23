@@ -97,7 +97,6 @@ export default class App extends Component {
 							<AddWorkout {...props} loginStatus={this.state.loggedIn} />
 						)}
 					/>
-					} />
 				</Router>
 			</div>
 		);
