@@ -22,9 +22,24 @@ export default class App extends Component {
 		this.attemptLogout = this.attemptLogout.bind(this);
 	}
 
+	componentDidMount() {
+		axios
+			.get("/auth/status")
+			.then(res => {
+				if (res.status === 200) {
+					this.setState({ loggedIn: true });
+				}
+			})
+			.catch(err => {
+				this.setState({ loggedIn: false });
+			});
+	}
+
 	// Updates the state of username and password.
 	emailPassword(event) {
-		this.setState({ [event.target.name]: event.target.value });
+		this.setState({
+			[event.target.name]: event.target.value
+		});
 	}
 
 	// Function for sending request to authenticate user.
@@ -33,7 +48,10 @@ export default class App extends Component {
 
 		axios.post("/auth/login", { email, password }).then(res => {
 			if (res.status === 200) {
-				this.setState({ loggedIn: true, modal: false });
+				this.setState({
+					loggedIn: true,
+					modal: false
+				});
 			}
 		});
 	}
@@ -52,19 +70,6 @@ export default class App extends Component {
 		this.setState(prevState => ({
 			modal: !prevState.modal
 		}));
-	}
-
-	componentDidMount() {
-		axios
-			.get("/auth/status")
-			.then(res => {
-				if (res.status === 200) {
-					this.setState({ loggedIn: true });
-				}
-			})
-			.catch(err => {
-				this.setState({ loggedIn: false });
-			});
 	}
 
 	render() {
