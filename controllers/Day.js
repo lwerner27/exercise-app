@@ -8,12 +8,25 @@ module.exports = {
 		newDay.save().then(day => res.status(201).json(day));
 	},
 	getCurrentDay: function(req, res) {
-		Day.findOne({ clientDate: req.params.clientDate })
+		Day.findOne({
+			clientDate: req.params.clientDate,
+			userId: req.session.userId
+		})
 			.then(day => {
-				res.status(200).json(day);
+				if (day) {
+					res.status(200).json(day);
+				} else {
+					this.createDay(req, res);
+				}
 			})
 			.catch(err => {
-				this.createDay(req, res);
+				console.log(err);
+				return res
+					.status(400)
+					.json({
+						msg:
+							"There was a problem finding your data. Please try again later."
+					});
 			});
 	}
 };
