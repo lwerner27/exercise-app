@@ -1,9 +1,7 @@
-// const router = require("express").Router();
-// const pickRoutes = require("./picks");
-// const usersRoutes = require("./users");
+const router = require("express").Router();
+const dayRoutes = require("./day");
 
-// // Routes
-// router.use("/picks", pickRoutes);
-// router.use("/users", usersRoutes);
+// Routes
+router.use("/day", dayRoutes);
 
-// module.exports = router;
+module.exports = router;
