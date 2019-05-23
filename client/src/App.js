@@ -33,11 +33,12 @@ export default class App extends Component {
 
 		axios.post("/auth/login", { email, password }).then(res => {
 			if (res.status === 200) {
-				this.setState({ loggedIn: true });
+				this.setState({ loggedIn: true, modal: false });
 			}
 		});
 	}
 
+	// Makes a logout request to the server
 	attemptLogout() {
 		axios.get("/auth/logout").then(res => {
 			if (res.status === 200) {
@@ -58,15 +59,11 @@ export default class App extends Component {
 			.get("/auth/status")
 			.then(res => {
 				if (res.status === 200) {
-					this.setState({ loggedIn: true }, () => {
-						console.log("You are logged in.");
-					});
+					this.setState({ loggedIn: true });
 				}
 			})
 			.catch(err => {
-				this.setState({ loggedIn: false }, () => {
-					console.log("You are not logged in.");
-				});
+				this.setState({ loggedIn: false });
 			});
 	}
 
@@ -89,7 +86,13 @@ export default class App extends Component {
 						attemptLogin={this.attemptLogin}
 					/>
 					<Route exact path="/" component={Home} />
-					<Route path="/addworkout" component={AddWorkout} />
+					<Route
+						path="/addworkout"
+						render={props => (
+							<AddWorkout {...props} loginStatus={this.state.loggedIn} />
+						)}
+					/>
+					} />
 				</Router>
 			</div>
 		);
