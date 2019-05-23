@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const { checkLoginStatus } = require("../shared/shared");
 const User = require("../models/User");
 
+// Route for handling user registration.
 router.post("/register", (req, res) => {
 	let { fullName, email, password } = req.body;
 
@@ -32,6 +33,7 @@ router.post("/register", (req, res) => {
 		});
 });
 
+// Route that handles user logins.
 router.post("/login", (req, res) => {
 	let { email, password } = req.body;
 	User.findOne({ email: email })
@@ -55,6 +57,7 @@ router.post("/login", (req, res) => {
 		});
 });
 
+// If the user is logged in this will destroy their session.
 router.all("/logout", checkLoginStatus, (req, res) => {
 	req.session.destroy(err => {
 		if (err) {
@@ -70,6 +73,7 @@ router.all("/logout", checkLoginStatus, (req, res) => {
 		.json({ msg: "You have successfully logged out." });
 });
 
+// Checks to see if the user's session still exists or is not expired.
 router.all("/status", checkLoginStatus, (req, res) => {
 	return res.status(200).json({ msg: "You are currently logged in." });
 });
