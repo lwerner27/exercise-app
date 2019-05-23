@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import WeightsForm from "../components/WeightsForm";
 import CardioForm from "../components/CardioForm";
 import DisplayExercises from "../components/DisplayExercise";
@@ -70,9 +71,17 @@ export default class AddWorkout extends Component {
 		});
 	}
 
+	// Redirects user to the home page if not logged in.
+	renderRedirect() {
+		if (!this.props.loginStatus) {
+			return <Redirect to="/" />;
+		}
+	}
+
 	render() {
 		return (
 			<Container>
+				{this.renderRedirect()}
 				<br />
 				<br />
 				<Row>
