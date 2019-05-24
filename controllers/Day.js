@@ -6,7 +6,7 @@ module.exports = {
 		newDay.userId = req.session.userId;
 		newDay.clientDate = req.params.clientDate;
 		newDay.save().then(day => {
-			req.session.dayId = day.__id;
+			req.session.dayId = day._id;
 			return res.status(201).json(day);
 		});
 	},
@@ -17,7 +17,7 @@ module.exports = {
 		})
 			.then(day => {
 				if (day) {
-					req.session.dayId = day.__id;
+					req.session.dayId = day._id;
 					return res.status(200).json(day);
 				} else {
 					this.createDay(req, res);
