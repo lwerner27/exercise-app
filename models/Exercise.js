@@ -3,32 +3,38 @@ const Schema = mongoose.Schema;
 
 const exerciseSchema = new Schema({
 	dayId: { type: Schema.Types.ObjectId },
-	exerciseType: String,
-	muscleGroup: String,
+	exerciseType: {
+		type: String,
+		required: true
+	},
+	muscleGroup: {
+		type: String
+	},
 	sets: {
-		type: Number,
-		default: null
+		type: Number
 	},
 	reps: {
-		type: Number,
-		default: null
+		type: Number
 	},
 	weight: {
-		type: Number,
-		default: null
+		type: Number
 	},
-	cardioType: String,
+	cardioType: {
+		type: String
+	},
 	duration: {
-		type: Number,
-		default: null
+		type: Number
 	},
 	distance: {
-		type: String,
-		default: null
+		type: String
 	},
 	notes: {
-		type: String,
-		default: null
+		type: String
+	},
+	expiresAt: {
+		type: Date,
+		index: { expires: "30 days" },
+		default: Date.now
 	}
 });
 
