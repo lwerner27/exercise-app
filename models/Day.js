@@ -3,9 +3,8 @@ const Schema = mongoose.Schema;
 
 const daySchema = new Schema({
 	userId: { type: Schema.Types.ObjectId, ref: "User" },
-	expiresAt: {
+	createdAt: {
 		type: Date,
-		index: { expires: "30 days" },
 		default: Date.now
 	},
 	clientDate: { type: String, required: true },

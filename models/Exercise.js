@@ -30,11 +30,6 @@ const exerciseSchema = new Schema({
 	},
 	notes: {
 		type: String
-	},
-	expiresAt: {
-		type: Date,
-		index: { expires: "30 days" },
-		default: Date.now
 	}
 });
 
