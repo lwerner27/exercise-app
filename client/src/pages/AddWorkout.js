@@ -70,7 +70,11 @@ export default class AddWorkout extends Component {
 	// Adds the exercise to the list of exercises after state updates it gets saved to local storage.
 	addExercise(exerciseData) {
 		let { exercises } = this.state;
+		axios.post("/api/exercise/add", exerciseData).then(res => {
+			console.log(res);
+		});
 		exercises.unshift(exerciseData);
+		console.log(exerciseData);
 		this.setState(exercises, () => {
 			localStorage.setItem("storedData", JSON.stringify(this.state));
 		});
