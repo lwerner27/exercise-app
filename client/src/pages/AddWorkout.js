@@ -28,12 +28,11 @@ export default class AddWorkout extends Component {
 		if (storedData) {
 			this.compareDates(todaysDate, storedData);
 		} else {
-			this.setState({ date: todaysDate });
+			axios.get(`/api/day/current/${todaysDate}`).then(res => {
+				console.log(res.data.exercises);
+				this.setState({ date: todaysDate, exercises: res.data.exercises });
+			});
 		}
-
-		axios.get(`/api/day/current/${todaysDate}`).then(res => {
-			console.log(res);
-		});
 	}
 
 	// Compares the data on local storage to the current data and acts accordingly.
@@ -44,7 +43,13 @@ export default class AddWorkout extends Component {
 		} else {
 			console.log("The dates do not match.");
 			localStorage.removeItem("storedData");
-			this.setState({ date: date });
+			axios.get(`/api/day/current/${date}`).then(res => {
+				console.log(res.data.exercises);
+				this.setState({
+					date: date,
+					exercises: res.data.exercises
+				});
+			});
 		}
 	}
 
