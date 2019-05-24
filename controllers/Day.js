@@ -15,6 +15,7 @@ module.exports = {
 			clientDate: req.params.clientDate,
 			userId: req.session.userId
 		})
+			.populate({ path: "exercises", model: "Exercise", select: "-__v" })
 			.then(day => {
 				if (day) {
 					req.session.dayId = day._id;
